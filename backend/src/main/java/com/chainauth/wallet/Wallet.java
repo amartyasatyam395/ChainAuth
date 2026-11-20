@@ -1,0 +1,4 @@
+package com.chainauth.wallet;
+import org.springframework.data.annotation.Id;import org.springframework.data.mongodb.core.index.Indexed;import org.springframework.data.mongodb.core.mapping.Document;import java.time.Instant;
+@Document("wallets") public class Wallet{@Id private String id;@Indexed(unique=true)private String address;@Indexed private String userId;private long chainId;private Instant linkedAt;private Instant lastUsedAt;
+public String getId(){return id;}public void setId(String v){id=v;}public String getAddress(){return address;}public void setAddress(String v){address=v;}public String getUserId(){return userId;}public void setUserId(String v){userId=v;}public long getChainId(){return chainId;}public void setChainId(long v){chainId=v;}public Instant getLinkedAt(){return linkedAt;}public void setLinkedAt(Instant v){linkedAt=v;}public Instant getLastUsedAt(){return lastUsedAt;}public void setLastUsedAt(Instant v){lastUsedAt=v;}}

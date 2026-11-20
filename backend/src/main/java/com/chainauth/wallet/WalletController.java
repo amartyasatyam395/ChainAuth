@@ -1,0 +1,5 @@
+package com.chainauth.wallet;
+import com.chainauth.user.UserRepository;import org.springframework.http.*;import org.springframework.security.core.Authentication;import org.springframework.web.bind.annotation.*;import java.util.Map;
+@RestController@RequestMapping("/api/users/me/wallets")public class WalletController{private final WalletAuthService service;private final UserRepository users;public WalletController(WalletAuthService s,UserRepository u){service=s;users=u;}
+@GetMapping public Object list(Authentication a){String uid=users.findByEmail(a.getName()).orElseThrow().getId();return service.list(uid).stream().map(w->Map.of("id",w.getId(),"address",w.getAddress(),"chainId",w.getChainId(),"linkedAt",w.getLinkedAt().toString(),"lastUsedAt",w.getLastUsedAt()==null?"":w.getLastUsedAt().toString())).toList();}
+@DeleteMapping("/{walletId}")public ResponseEntity<?> unlink(@PathVariable String walletId,Authentication a){String uid=users.findByEmail(a.getName()).orElseThrow().getId();service.unlink(walletId,uid);return ResponseEntity.ok(Map.of("message","Wallet unlinked"));}}

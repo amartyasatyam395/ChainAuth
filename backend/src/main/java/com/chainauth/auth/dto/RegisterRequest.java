@@ -1,0 +1,3 @@
+package com.chainauth.auth.dto;
+import jakarta.validation.constraints.*;
+public record RegisterRequest(@NotBlank @Size(max=80) String name, @NotBlank @Email @Size(max=254) String email, @NotBlank @Size(min=12,max=72) String password) {}

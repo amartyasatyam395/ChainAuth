@@ -1,0 +1,3 @@
+package com.chainauth.blockchain;
+import org.springframework.data.annotation.Id; import org.springframework.data.mongodb.core.mapping.Document; import java.time.Instant;
+@Document("chain_event_cursors") public class ChainEventCursor { @Id private String id="identity-registry"; private long nextBlock; private String lastBlockHash; private Instant updatedAt=Instant.now(); public String getId(){return id;} public void setId(String v){id=v;} public long getNextBlock(){return nextBlock;} public void setNextBlock(long v){nextBlock=v;} public String getLastBlockHash(){return lastBlockHash;} public void setLastBlockHash(String v){lastBlockHash=v;} public Instant getUpdatedAt(){return updatedAt;} public void setUpdatedAt(Instant v){updatedAt=v;} }
